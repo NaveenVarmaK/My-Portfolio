@@ -22,7 +22,7 @@ export default function LargeTextWithCard() {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          fontSize: ['3rem', '30rem'], // Responsive size
+          fontSize: ['15rem', '30rem'], // Responsive size
           fontWeight: 900,
           color: '#505081', // Faded text effect
           zIndex: -1,
@@ -31,16 +31,15 @@ export default function LargeTextWithCard() {
           whiteSpace: 'nowrap',
         }}
       >
-        ABOUT
+        Myself
       </Typography>
 
       {/* Foreground Card with Blur Effect */}
       <Card
         sx={{
         //   backgroundColor: 'rgba(152, 134, 134, 0.5)', // Semi-transparent background
-                      backgroundColor: 'rgba(80, 80, 129, 0.9)', // Semi-transparent background
-            
-          backdropFilter: 'blur(50px)', // Blur effect
+          backgroundColor: 'rgba(80, 80, 129, 0.1)', // Semi-transparent background
+          backdropFilter: 'blur(30px)', // Blur effect
           boxShadow: 3,
           borderRadius: 2,
           maxWidth: 700,

@@ -32,10 +32,9 @@ export default function Types() {
         sx={{
           fontFamily: 'Montserrat, sans-serif', // Use a modern sans-serif font
           fontWeight: 200, // Bold font weight
-          color: 'white', // Less transparent
+          color: 'WHITE', // Less transparent
           fontSize: { xs: '2.5rem', sm: '4rem' }, // Responsive font size
           mb: 2, // Add margin bottom
-          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)', // Add subtle text shadow
         }}
       >
         Naveen Varma KALIDINDI
@@ -53,7 +52,7 @@ export default function Types() {
           // fontStyle: 'italic', // Italicize the text
         }}
       >
-        Computer Science Engineer / Full Stack Developer / M2 Student
+        Computer Science Engineer / Full Stack Developer
       </Typography>
     </Box>
   );
