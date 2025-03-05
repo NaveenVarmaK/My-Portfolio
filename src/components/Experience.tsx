@@ -47,7 +47,8 @@ export default function ExpandableCard() {
     <Box
       sx={{
         position: 'relative',
-        minWidth: '100%',
+        maxWidth: '100%',
+        minHeight: '60vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -63,13 +64,17 @@ export default function ExpandableCard() {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          fontSize: { xs: '40rem', md: '20rem' }, // Responsive font size
+          // fontSize: { xs: '40rem', md: '20rem' }, // Responsive font size
+          fontSize: ['5rem', '10rem', '20rem'], // Responsive font size
           fontWeight: 900,
           color: '#505081', // Faded text effect
           zIndex: -1,
           textAlign: 'center',
           userSelect: 'none',
           whiteSpace: 'nowrap',
+          minWidth: '50%',
+          maxWidth
+          : '100%',
         }}
       >
         EXPERIENCE

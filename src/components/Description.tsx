@@ -22,13 +22,15 @@ export default function LargeTextWithCard() {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          fontSize: ['15rem', '30rem'], // Responsive size
+          fontSize: ['5rem','10rem', '30rem'], // Responsive size
           fontWeight: 900,
           color: '#505081', // Faded text effect
           zIndex: -1,
           textAlign: 'center',
           userSelect: 'none',
           whiteSpace: 'nowrap',
+          minWidth: '50%',
+          maxWidth: '100%',
         }}
       >
         Myself

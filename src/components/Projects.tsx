@@ -220,8 +220,8 @@ export default function Education() {
             <CardContent>
               <Typography paragraph sx={{ color: 'white', fontWeight: 'bold' }}>
              - Used for storing and managing IoT traffic data files. <br />
-- Files are uploaded via UploadS3.java to a designated S3 bucket (upload-client-cps2). <br />
-- Summarized data is stored in a separate S3 bucket (summarizedtables-cps2).
+             - Files are uploaded via UploadS3.java to a designated S3 bucket (upload-client-cps2). <br />
+             - Summarized data is stored in a separate S3 bucket (summarizedtables-cps2).
               </Typography>
             </CardContent>
           </Collapse>

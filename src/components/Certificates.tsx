@@ -30,12 +30,13 @@ function SelectActionCard() {
     <Box
       sx={{
         position: 'relative', // Needed for absolute positioning of background text
-        width: '100%',
+        minWidth: '100%',
         minHeight: '60vh', // Ensure the component takes up enough vertical space
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         p: 0, // Add some padding
+        mt: 15, // Add some margin at the top
       }}
     >
       {/* Large Background Text */}
@@ -46,13 +47,15 @@ function SelectActionCard() {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          fontSize: ['3rem', '18rem'], // Responsive size
+          fontSize: ['3rem','9rem', '15rem'], // Responsive size
           fontWeight: 900,
-          color: 'rgba(0, 0, 0, 0.1)', // Faded text effect
+          color: '#505081', // Faded text effect
           zIndex: -1, // Ensure it stays behind the cards
           textAlign: 'center',
           userSelect: 'none', // Prevent text selection
           whiteSpace: 'nowrap', // Prevent text wrapping
+          minWidth: '50%', // Ensure the text doesn't get too small
+          maxWidth: '100%', // Ensure the text doesn't get too large
         }}
       >
         Certifications
@@ -71,7 +74,7 @@ function SelectActionCard() {
         }}
       >
         {cards.map((card, index) => (
-          <Card key={card.id} sx={{ width: 350 }}> {/* Fixed width for cards */}
+          <Card key={card.id} sx={{ maxWidth: 350 , backgroundColor: 'rgba(80, 80, 129, 0.1)', backdropFilter: 'blur(30px)', boxShadow: 3, borderRadius: 2, color:'white'}}> {/* Fixed width for cards */}
             <CardActionArea
               onClick={() => setSelectedCard(index)}
               data-active={selectedCard === index ? '' : undefined}
@@ -86,10 +89,10 @@ function SelectActionCard() {
               }}
             >
               <CardContent>
-                <Typography variant="h5" component="div">
+                <Typography variant="h5" component="div" sx={ {color: 'white', fontweight: 'bold'}} >
                   {card.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={ {color: 'white', fontweight: 'bold'}}>
                   {card.description}
                 </Typography>
               </CardContent>

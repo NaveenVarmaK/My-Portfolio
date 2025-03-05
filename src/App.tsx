@@ -12,8 +12,8 @@ function App() {
   return (
     <div>
       <BottomHeader />
-      <Header />
       <section id="home">
+        <Header />
         <Description />
       </section>
       <section id="experience">
