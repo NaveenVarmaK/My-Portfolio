@@ -14,20 +14,21 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
+type ProjectSection = 's3' | 'lambda' | 'sns' | 'sqs' | 'ec2' | 'rdf' | 'shacl' | 'sparql' | 'xgboost' | 'bnn' | 'alns';
+
 export default function Projects() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
   // Current active project (0: AWS, 1: Semantic, 2: VRP)
   const [activeProject, setActiveProject] = React.useState(0);
   
   // Single active section state - only one section can be active at a time
-  const [activeSection, setActiveSection] = React.useState(null);
+  const [activeSection, setActiveSection] = React.useState<ProjectSection | null>(null);
 
   const [isVisible, setIsVisible] = React.useState(false);
   const [cardHeight, setCardHeight] = React.useState(0);
-  const cardRef = React.useRef(null);
+  const cardRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     setIsVisible(true);
@@ -70,11 +71,11 @@ export default function Projects() {
       github: 'https://github.com/NaveenVarmaK/AWS-IoT-Traffic-Processing.git',
       description: 'Automated IoT traffic data processing pipeline using AWS cloud services. Built scalable infrastructure for uploading, summarizing, and consolidating geographically distributed IoT device data. Implemented anomaly detection and bottleneck analysis to guide infrastructure investment decisions with real-time processing capabilities.',
       technologies: [
-        { label: 'S3', key: 's3', content: "Used for storing and managing IoT traffic data files. Files are uploaded via UploadS3.java to a designated S3 bucket (upload-client-cps2). Summarized data is stored in a separate S3 bucket (summarizedtables-cps2)." },
-        { label: 'Lambda', key: 'lambda', content: "SummarizeWorker Lambda Function: Processes uploaded files, summarizes IoT traffic data, and saves the output to an S3 bucket. ConsolidatorWorker Lambda Function: Applies statistical operations (e.g., standard deviation, average) on the summarized data and sends results to an SNS topic." },
-        { label: 'SNS', key: 'sns', content: "ConsolidatorWorker-SNS Topic: Sends notifications when processed files are ready for download. Allows users to subscribe via email or other methods for real-time updates on data processing status." },
-        { label: 'SQS', key: 'sqs', content: "ExportClientQueue: Stores metadata (bucket name and file name) for retrieving processed files. Planned enhancement: Implementing SQS between Lambda functions to improve reliability and handle busy processing queues." },
-        { label: 'EC2', key: 'ec2', content: "Deployed the project on a t2.micro EC2 instance to evaluate performance and resource consumption. Compared EC2 and AWS Lambda in terms of flexibility, resource usage, and cost-effectiveness for running the IoT data processing pipeline." }
+        { label: 'S3', key: 's3' as ProjectSection, content: "Used for storing and managing IoT traffic data files. Files are uploaded via UploadS3.java to a designated S3 bucket (upload-client-cps2). Summarized data is stored in a separate S3 bucket (summarizedtables-cps2)." },
+        { label: 'Lambda', key: 'lambda' as ProjectSection, content: "SummarizeWorker Lambda Function: Processes uploaded files, summarizes IoT traffic data, and saves the output to an S3 bucket. ConsolidatorWorker Lambda Function: Applies statistical operations (e.g., standard deviation, average) on the summarized data and sends results to an SNS topic." },
+        { label: 'SNS', key: 'sns' as ProjectSection, content: "ConsolidatorWorker-SNS Topic: Sends notifications when processed files are ready for download. Allows users to subscribe via email or other methods for real-time updates on data processing status." },
+        { label: 'SQS', key: 'sqs' as ProjectSection, content: "ExportClientQueue: Stores metadata (bucket name and file name) for retrieving processed files. Planned enhancement: Implementing SQS between Lambda functions to improve reliability and handle busy processing queues." },
+        { label: 'EC2', key: 'ec2' as ProjectSection, content: "Deployed the project on a t2.micro EC2 instance to evaluate performance and resource consumption. Compared EC2 and AWS Lambda in terms of flexibility, resource usage, and cost-effectiveness for running the IoT data processing pipeline." }
       ]
     },
     {
@@ -87,9 +88,9 @@ export default function Projects() {
       github: 'https://github.com/anjola-adeuyi/bulbapedia-knowledge-graph.git',
       description: 'Extracted Pokémon data from Bulbapedia and transformed it into RDF triples for structured knowledge representation. Designed custom ontology with SHACL validation to ensure data consistency. Developed SPARQL endpoint with inference capabilities for querying and integrating linked data with semantic web standards.',
       technologies: [
-        { label: 'RDF', key: 'rdf', content: "Converted Pokémon data from Bulbapedia into RDF triples for structured representation. Ensured alignment with schema.org and linked data principles. Implemented entity linking with DBpedia and Wikidata for semantic interoperability." },
-        { label: 'SHACL', key: 'shacl', content: "Designed SHACL shapes to validate the knowledge graph structure. Enforced constraints on Pokémon attributes (height, weight, types). Implemented type hierarchy validation and property cardinality rules for data consistency. Used Apache Jena SHACL for RDF quality checks." },
-        { label: 'SPARQL', key: 'sparql', content: "Developed a SPARQL endpoint for querying Pokémon data. Implemented inference support, including subclass hierarchy and transitive properties. Created predefined SPARQL queries for retrieving Pokémon details, evolution chains, and type relationships. Provided machine-readable and human-readable linked data views." }
+        { label: 'RDF', key: 'rdf' as ProjectSection, content: "Converted Pokémon data from Bulbapedia into RDF triples for structured representation. Ensured alignment with schema.org and linked data principles. Implemented entity linking with DBpedia and Wikidata for semantic interoperability." },
+        { label: 'SHACL', key: 'shacl' as ProjectSection, content: "Designed SHACL shapes to validate the knowledge graph structure. Enforced constraints on Pokémon attributes (height, weight, types). Implemented type hierarchy validation and property cardinality rules for data consistency. Used Apache Jena SHACL for RDF quality checks." },
+        { label: 'SPARQL', key: 'sparql' as ProjectSection, content: "Developed a SPARQL endpoint for querying Pokémon data. Implemented inference support, including subclass hierarchy and transitive properties. Created predefined SPARQL queries for retrieving Pokémon details, evolution chains, and type relationships. Provided machine-readable and human-readable linked data views." }
       ]
     },
     {
@@ -102,9 +103,9 @@ export default function Projects() {
       github: null,
       description: 'Investigating optimization strategies for vehicle routing under stochastic and uncertain demand conditions. Developing probabilistic models using machine learning to improve decision-making in logistics. Implementing adaptive algorithms to minimize transportation costs while maintaining service reliability in dynamic environments.',
       technologies: [
-        { label: 'XGBoost', key: 'xgboost', content: "Model Selection: XGBoost is chosen for its effectiveness in handling structured data and its ability to capture complex patterns in demand. Customized Loss Function: An asymmetric loss function is designed to penalize underestimations more heavily than overestimations, reflecting the cost imbalances in routing. Model Training: The model is trained using historical demand data and validated using cross-validation techniques." },
-        { label: 'BNN', key: 'bnn', content: "Uncertainty Quantification: Bayesian Neural Networks are employed to provide predictions with uncertainty intervals. This helps in capturing the variability in demand and provides a probabilistic estimate of future demands. Probabilistic Methods: The Bayesian approach allows for the estimation of demand uncertainty, which is crucial for robust optimization and dynamic re-routing." },
-        { label: 'ALNS', key: 'alns', content: "Robust Optimization Model: ALNS is used to iteratively improve routing solutions by incorporating uncertainty intervals during feasibility checks. Destroy and Repair Operators: ALNS employs destroy operators to remove a subset of routes or collection points and repair operators to reinsert collection points using predicted demand and distance metrics. Dynamic Re-Routing: Routes are dynamically adapted based on real-time data, updating routes as actual demand values become available during operations." }
+        { label: 'XGBoost', key: 'xgboost' as ProjectSection, content: "Model Selection: XGBoost is chosen for its effectiveness in handling structured data and its ability to capture complex patterns in demand. Customized Loss Function: An asymmetric loss function is designed to penalize underestimations more heavily than overestimations, reflecting the cost imbalances in routing. Model Training: The model is trained using historical demand data and validated using cross-validation techniques." },
+        { label: 'BNN', key: 'bnn' as ProjectSection, content: "Uncertainty Quantification: Bayesian Neural Networks are employed to provide predictions with uncertainty intervals. This helps in capturing the variability in demand and provides a probabilistic estimate of future demands. Probabilistic Methods: The Bayesian approach allows for the estimation of demand uncertainty, which is crucial for robust optimization and dynamic re-routing." },
+        { label: 'ALNS', key: 'alns' as ProjectSection, content: "Robust Optimization Model: ALNS is used to iteratively improve routing solutions by incorporating uncertainty intervals during feasibility checks. Destroy and Repair Operators: ALNS employs destroy operators to remove a subset of routes or collection points and repair operators to reinsert collection points using predicted demand and distance metrics. Dynamic Re-Routing: Routes are dynamically adapted based on real-time data, updating routes as actual demand values become available during operations." }
       ]
     }
   ];
@@ -122,14 +123,14 @@ export default function Projects() {
     setActiveSection(null);
   };
 
-  const goToProject = (index) => {
+  const goToProject = (index: number) => {
     setActiveProject(index);
     // Reset active section when switching projects
     setActiveSection(null);
   };
 
   // Toggle section expansion - only one active at a time
-  const toggleSection = (sectionKey) => {
+  const toggleSection = (sectionKey: ProjectSection) => {
     setActiveSection(prevActive => prevActive === sectionKey ? null : sectionKey);
   };
 

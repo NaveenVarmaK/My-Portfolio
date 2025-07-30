@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, useMediaQuery, useTheme, Chip, Divider, Fade, Slide } from '@mui/material';
+import { Box, useMediaQuery, useTheme, Chip, Divider, Fade } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -12,20 +12,22 @@ import ComputerIcon from '@mui/icons-material/Computer';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
+type EducationSection = 'web_programming' | 'machine_learning' | 'semantic_web' | 'cloud_edge' | 'cyber_security';
+type HoveredCard = 'masters' | 'bachelors';
+
 export default function Education() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
   // Single active section state (only one can be active)
-  const [activeSection, setActiveSection] = React.useState(null);
+  const [activeSection, setActiveSection] = React.useState<EducationSection | null>(null);
 
   // Hover state management
-  const [hoveredCard, setHoveredCard] = React.useState(null); // 'masters', 'bachelors', or null
+  const [hoveredCard, setHoveredCard] = React.useState<HoveredCard | null>(null);
   
   const [isVisible, setIsVisible] = React.useState(false);
   const [cardHeight, setCardHeight] = React.useState(0);
-  const cardRef = React.useRef(null);
+  const cardRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 320);
@@ -63,7 +65,7 @@ export default function Education() {
   };
 
   // Section click handler - only one section can be active
-  const handleSectionClick = (id) => setActiveSection(activeSection === id ? null : id);
+  const handleSectionClick = (id: EducationSection) => setActiveSection(activeSection === id ? null : id);
 
   // Hover handlers
   const handleMastersCardHover = () => setHoveredCard('masters');
@@ -370,12 +372,12 @@ export default function Education() {
                   }}
                 >
                   {[
-                    { label: 'Web Programming', id: 'web_programming', color: '#4caf50' },
-                    { label: 'Machine Learning', id: 'machine_learning', color: '#ff9800' },
-                    { label: 'Semantic Web', id: 'semantic_web', color: '#2196f3' },
-                    { label: 'Cloud & Edge', id: 'cloud_edge', color: '#9c27b0' },
-                    { label: 'Cyber Security', id: 'cyber_security', color: '#f44336' },
-                  ].map((subject, index) => (
+                    { label: 'Web Programming', id: 'web_programming' as EducationSection, color: '#4caf50' },
+                    { label: 'Machine Learning', id: 'machine_learning' as EducationSection, color: '#ff9800' },
+                    { label: 'Semantic Web', id: 'semantic_web' as EducationSection, color: '#2196f3' },
+                    { label: 'Cloud & Edge', id: 'cloud_edge' as EducationSection, color: '#9c27b0' },
+                    { label: 'Cyber Security', id: 'cyber_security' as EducationSection, color: '#f44336' },
+                  ].map((subject) => (
                     <Button
                       key={subject.id}
                       onClick={() => handleSectionClick(subject.id)}
@@ -414,26 +416,26 @@ export default function Education() {
                 {/* Collapsible Sections for Master's */}
                 {[
                   { 
-                    id: 'web_programming',
+                    id: 'web_programming' as EducationSection,
                     content: "Developed Vue.js front-end applications, focusing on dynamic UI components and state management. Implemented unit testing in Java to ensure code reliability and maintainability. Gained expertise in Spring Boot, including dependency injection, Spring Data JPA, and RESTful services. Integrated Spring Security for authentication and authorization. Deployed applications to Clever Cloud, optimizing for scalability and performance." 
                   },
                   { 
-                    id: 'machine_learning',
+                    id: 'machine_learning' as EducationSection,
                     content: "Implemented a Decision Tree algorithm from scratch, gaining hands-on experience with tree-based models. Expanded knowledge to Ensemble Learning, including an introduction to Random Forest, an ensemble of Decision Trees. Built a Perceptron from scratch, gaining foundational understanding of (Artificial) Neural Networks. Applied Deep Learning techniques to diverse data types such as text, images, audio, and time series. Studied modern Neural Network architectures, including Variational Autoencoders (VAEs) and Generative Adversarial Networks (GANs), over multiple in-depth sessions." 
                   },
                   { 
-                    id: 'semantic_web',
+                    id: 'semantic_web' as EducationSection,
                     content: "Writing and managing RDF data for structured knowledge representation. Querying RDF databases using SPARQL to extract meaningful insights. Interacting with Linked Data Platforms to integrate and consume linked datasets. Working with JSON-LD and Schema.org for semantic web compatibility. Defining RDF schemas with SHACL to validate and enforce data consistency. Implementing web ontologies using Protégé to model domain-specific knowledge." 
                   },
                   { 
-                    id: 'cloud_edge',
+                    id: 'cloud_edge' as EducationSection,
                     content: "Cloud Service Models: Gained a comprehensive understanding of Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS). Cloud Concepts: Explored the fundamental characteristics, architectures, economics, and ethical aspects of cloud computing. Edge Computing: Learned about the main features and distinctions of edge computing compared to cloud computing. Practical Sessions with AWS: Hands-on experience with various AWS services, including EC2, S3, Lambda, CLI, SDK for Java, SQS, and SNS. Ethical Considerations: Discussed the ethical implications of cloud computing technologies." 
                   },
                   { 
-                    id: 'cyber_security',
+                    id: 'cyber_security' as EducationSection,
                     content: "Introduction to Cyber Security & Physical Pen Testing: Basics of cybersecurity and hands-on physical penetration testing. Software Cracking: Techniques of software cracking using tools like x64dbg. Pen Testing: Penetration testing methodologies with Nmap, OpenVAS, and MetaSploit to gain remote access to systems. Password Cracking: Tools and techniques for password cracking, including Ophcrack and Rainbow tables. SQL Injection: Understanding SQL injection attacks on simulated e-commerce platforms. Machine Learning & CyberSecurity: The role of machine learning in cybersecurity, with a focus on privacy and intrusion detection systems." 
                   }
-                ].map((section, index) => (
+                ].map((section) => (
                   <Collapse key={section.id} in={activeSection === section.id} timeout={1200} unmountOnExit>
                     <CardContent sx={{ 
                       p: { xs: 2, sm: 3 },

@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { Box, Card, CardContent, Typography, useMediaQuery, useTheme, Fade, Chip } from '@mui/material';
+import { Box, Card, CardContent, Typography, Fade } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
-import PersonIcon from '@mui/icons-material/Person';
-import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 
 // Floating animation for the card
 const float = keyframes`
@@ -17,7 +15,7 @@ const pulse = keyframes`
 `;
 
 // Enhanced card with dark glassmorphism
-const EnhancedCard = styled(Card)(({ theme }) => ({
+const EnhancedCard = styled(Card)(() => ({
   background: 'linear-gradient(145deg, rgba(2, 2, 2, 0.90) 0%, rgba(5, 5, 8, 0.94) 100%)',
   backdropFilter: 'blur(40px)',
   boxShadow: '0 25px 80px rgba(5, 12, 16, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
@@ -48,14 +46,10 @@ const EnhancedCard = styled(Card)(({ theme }) => ({
 }));
 
 export default function EnhancedDescription() {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  
   const [isVisible, setIsVisible] = React.useState(false);
   const [showContent, setShowContent] = React.useState(false);
   const [cardHeight, setCardHeight] = React.useState(0);
-  const cardRef = React.useRef(null);
+  const cardRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     setIsVisible(true);

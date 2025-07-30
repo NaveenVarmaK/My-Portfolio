@@ -12,15 +12,18 @@ import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 
+type ExperienceSection = 'python2025' | 'rdf2025' | 'graphdb2025' | 'iec2025' | 'llm2025' | 'python2024' | 'vue2024' | 'qgis2024' | 'ortools2024' | 'fastapi2024';
+type HoveredCard = 'new' | 'old';
+
 export default function Experience() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [activeSection, setActiveSection] = React.useState(null);
-  const [hoveredCard, setHoveredCard] = React.useState(null);
+  const [activeSection, setActiveSection] = React.useState<ExperienceSection | null>(null);
+  const [hoveredCard, setHoveredCard] = React.useState<HoveredCard | null>(null);
   const [isVisible, setIsVisible] = React.useState(false);
   const [cardHeight, setCardHeight] = React.useState(0);
-  const cardRef = React.useRef(null);
+  const cardRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 320);
@@ -47,7 +50,7 @@ export default function Experience() {
     };
   }, [activeSection]);
 
-  const handleSectionClick = (id) => setActiveSection(activeSection === id ? null : id);
+  const handleSectionClick = (id: ExperienceSection) => setActiveSection(activeSection === id ? null : id);
 
   // Hover handlers
   const handleNewCardHover = () => setHoveredCard('new');
@@ -349,11 +352,11 @@ export default function Experience() {
                   }}
                 >
                   {[
-                    { label: 'Python', id: 'python2025', color: '#4a90e2' },
-                    { label: 'RDF/SPARQL', id: 'rdf2025', color: '#e74c3c' },
-                    { label: 'GraphDB', id: 'graphdb2025', color: '#27ae60' },
-                    { label: 'IEC 61850', id: 'iec2025', color: '#f39c12' },
-                    { label: 'LLM/AI', id: 'llm2025', color: '#9b59b6' },
+                    { label: 'Python', id: 'python2025' as ExperienceSection, color: '#4a90e2' },
+                    { label: 'RDF/SPARQL', id: 'rdf2025' as ExperienceSection, color: '#e74c3c' },
+                    { label: 'GraphDB', id: 'graphdb2025' as ExperienceSection, color: '#27ae60' },
+                    { label: 'IEC 61850', id: 'iec2025' as ExperienceSection, color: '#f39c12' },
+                    { label: 'LLM/AI', id: 'llm2025' as ExperienceSection, color: '#9b59b6' },
                   ].map((tech) => (
                     <Button
                       key={tech.id}
@@ -393,23 +396,23 @@ export default function Experience() {
                 {/* Collapsible Sections for 2025 Experience */}
                 {[
                   {
-                    id: 'python2025',
+                    id: 'python2025' as ExperienceSection,
                     content: "Designed a ETL pipeline using Python with automated CSV processing, regex-based device extraction, and ISO 8601 time standardization. Implemented modular architecture with integrated evaluation systems for performance monitoring and resource usage tracking.",
                   },
                   {
-                    id: 'rdf2025',
+                    id: 'rdf2025' as ExperienceSection,
                     content: "Developed RDF knowledge graphs using SDM-RDFizer with Jinja2 templating for automated RML mapping generation.",
                   },
                   {
-                    id: 'graphdb2025',
+                    id: 'graphdb2025' as ExperienceSection,
                     content: "Integrated GraphDB repository management with automated import capabilities, authentication handling, and query optimization. Built a database interaction systems for knowledge graph storage, retrieval, and semantic reasoning.",
                   },
                   {
-                    id: 'iec2025',
+                    id: 'iec2025' as ExperienceSection,
                     content: "Implemented IEC 61850 standard compliance with automated device hierarchy processing, logical node mapping, and data attribute extraction. Created semantic representations of energy devices following international standards for power system communication.",
                   },
                   {
-                    id: 'llm2025',
+                    id: 'llm2025' as ExperienceSection,
                     content: "Built AI-powered Word document processing system using Google Gemma 3-4B-IT model with LM Studio integration. Implemented few-shot learning techniques for data object extraction, de-duplication algorithms, and automated dictionary generation.",
                   }
                 ].map((section) => (
@@ -632,11 +635,11 @@ export default function Experience() {
                   }}
                 >
                   {[
-                    { label: 'Python', id: 'python2024', color: '#4a90e2' },
-                    { label: 'VueJS', id: 'vue2024', color: '#4fc08d' },
-                    { label: 'QGIS', id: 'qgis2024', color: '#589632' },
-                    { label: 'OR-Tools', id: 'ortools2024', color: '#4285f4' },
-                    { label: 'FastAPI', id: 'fastapi2024', color: '#009688' },
+                    { label: 'Python', id: 'python2024' as ExperienceSection, color: '#4a90e2' },
+                    { label: 'VueJS', id: 'vue2024' as ExperienceSection, color: '#4fc08d' },
+                    { label: 'QGIS', id: 'qgis2024' as ExperienceSection, color: '#589632' },
+                    { label: 'OR-Tools', id: 'ortools2024' as ExperienceSection, color: '#4285f4' },
+                    { label: 'FastAPI', id: 'fastapi2024' as ExperienceSection, color: '#009688' },
                   ].map((tech) => (
                     <Button
                       key={tech.id}
@@ -676,23 +679,23 @@ export default function Experience() {
                 {/* Collapsible sections only show when hovered */}
                 {[
                   {
-                    id: 'python2024',
+                    id: 'python2024' as ExperienceSection,
                     content: "I chose a modular Python package approach for better maintainability, integration, and scalability. Each process—Transport, Methanisation, Sludge Treatment, Cleaning, Fuel Conversion, and more—was encapsulated in separate packages, ensuring seamless updates and efficient waste management modeling.",
                   },
                   {
-                    id: 'vue2024',
+                    id: 'vue2024' as ExperienceSection,
                     content: "Developed a Vue.js frontend for evaluating multiple waste management scenarios, enabling users to select inputs, compare different models, and visualize data through interactive graphs. This helped identify the most efficient waste management strategy for the metropolitan area.",
                   },
                   {
-                    id: 'qgis2024',
+                    id: 'qgis2024' as ExperienceSection,
                     content: "Utilized QGIS for geospatial analysis to extract distance matrices, essential for calculating total distances per polygon and optimizing waste collection routes. With 176 collection points, the goal was to estimate fuel consumption for each polygon.",
                   },
                   {
-                    id: 'ortools2024',
+                    id: 'ortools2024' as ExperienceSection,
                     content: "Addressed an NP-hard Traveling Salesman Problem by optimizing waste collection routes using Google OR-Tools. Implemented a Vehicle Routing Problem (VRP) approach to estimate total fuel consumption per polygon.",
                   },
                   {
-                    id: 'fastapi2024',
+                    id: 'fastapi2024' as ExperienceSection,
                     content: "Implemented FastAPI for input and output handling in the waste management model. Used POST requests to submit total waste and fuel consumption per polygon, while a GET API allowed users to retrieve results from file or history.",
                   }
                 ].map((section) => (

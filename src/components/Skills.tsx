@@ -4,11 +4,11 @@ import { styled } from '@mui/material/styles';
 import CodeIcon from '@mui/icons-material/Code';
 import WebIcon from '@mui/icons-material/Web';
 import CloudIcon from '@mui/icons-material/Cloud';
-import DataObjectIcon from '@mui/icons-material/DataObject';
 import StorageIcon from '@mui/icons-material/Storage';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 
+type SkillCategory = 'frontend' | 'backend' | 'languages' | 'semantic' | 'ai' | 'cloud' | 'data';
 
 const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.8),
@@ -20,7 +20,7 @@ export default function SkillsSection() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [isVisible, setIsVisible] = React.useState(false);
-  const [hoveredCategory, setHoveredCategory] = React.useState(null);
+  const [hoveredCategory, setHoveredCategory] = React.useState<SkillCategory | null>(null);
 
   React.useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 320);
@@ -29,62 +29,62 @@ export default function SkillsSection() {
 
   const allSkills = [
     // Frontend
-    { id: 'html', label: 'HTML', category: 'frontend' },
-    { id: 'css', label: 'CSS', category: 'frontend' },
-    { id: 'bootstrap', label: 'Bootstrap', category: 'frontend' },
-    { id: 'angular', label: 'Angular', category: 'frontend' },
-    { id: 'react', label: 'React', category: 'frontend' },
-    { id: 'vue', label: 'Vue.js', category: 'frontend' },
-    { id: 'javascript', label: 'JavaScript', category: 'frontend' },
-    { id: 'typescript', label: 'TypeScript', category: 'frontend' },
+    { id: 'html', label: 'HTML', category: 'frontend' as SkillCategory },
+    { id: 'css', label: 'CSS', category: 'frontend' as SkillCategory },
+    { id: 'bootstrap', label: 'Bootstrap', category: 'frontend' as SkillCategory },
+    { id: 'angular', label: 'Angular', category: 'frontend' as SkillCategory },
+    { id: 'react', label: 'React', category: 'frontend' as SkillCategory },
+    { id: 'vue', label: 'Vue.js', category: 'frontend' as SkillCategory },
+    { id: 'javascript', label: 'JavaScript', category: 'frontend' as SkillCategory },
+    { id: 'typescript', label: 'TypeScript', category: 'frontend' as SkillCategory },
     
     // Backend
-    { id: 'fastapi', label: 'FastAPI', category: 'backend' },
-    { id: 'restapi', label: 'RestAPI', category: 'backend' },
-    { id: 'springboot', label: 'Spring Boot', category: 'backend' },
+    { id: 'fastapi', label: 'FastAPI', category: 'backend' as SkillCategory },
+    { id: 'restapi', label: 'RestAPI', category: 'backend' as SkillCategory },
+    { id: 'springboot', label: 'Spring Boot', category: 'backend' as SkillCategory },
     
     // Programming Languages
-    { id: 'python', label: 'Python', category: 'languages' },
-    { id: 'java', label: 'Java', category: 'languages' },
-    { id: 'kotlin', label: 'Kotlin', category: 'languages' },
-    { id: 'c', label: 'C', category: 'languages' },
-    { id: 'cpp', label: 'C++', category: 'languages' },
-    { id: 'sql', label: 'SQL', category: 'languages' },
-    { id: 'sdlc', label: 'SDLC', category: 'languages' },
-    { id: 'oops', label: 'OOPs', category: 'languages' },
+    { id: 'python', label: 'Python', category: 'languages' as SkillCategory },
+    { id: 'java', label: 'Java', category: 'languages' as SkillCategory },
+    { id: 'kotlin', label: 'Kotlin', category: 'languages' as SkillCategory },
+    { id: 'c', label: 'C', category: 'languages' as SkillCategory },
+    { id: 'cpp', label: 'C++', category: 'languages' as SkillCategory },
+    { id: 'sql', label: 'SQL', category: 'languages' as SkillCategory },
+    { id: 'sdlc', label: 'SDLC', category: 'languages' as SkillCategory },
+    { id: 'oops', label: 'OOPs', category: 'languages' as SkillCategory },
     
     // Cloud & DevOps
-    { id: 'aws', label: 'AWS Cloud', category: 'cloud' },
-    { id: 'git', label: 'Git', category: 'cloud' },
-    { id: 'docker', label: 'Docker', category: 'cloud' },
+    { id: 'aws', label: 'AWS Cloud', category: 'cloud' as SkillCategory },
+    { id: 'git', label: 'Git', category: 'cloud' as SkillCategory },
+    { id: 'docker', label: 'Docker', category: 'cloud' as SkillCategory },
     
     // Data Analytics & GIS (Now more focused)
-    { id: 'ortools', label: 'OR-Tools VRP', category: 'data' },
-    { id: 'qgis', label: 'QGIS', category: 'data' },
+    { id: 'ortools', label: 'OR-Tools VRP', category: 'data' as SkillCategory },
+    { id: 'qgis', label: 'QGIS', category: 'data' as SkillCategory },
     
     // NEW & MOVED: All Semantic Web and Knowledge Graph skills now in their own category
-    { id: 'knowledgegraph', label: 'Knowledge Graph', category: 'semantic' },
-    { id: 'semanticweb', label: 'Semantic Web', category: 'semantic' },
-    { id: 'ontology', label: 'Ontology Engineering', category: 'semantic' },
-    { id: 'rml', label: 'RML', category: 'semantic' },
-    { id: 'sparql', label: 'SPARQL', category: 'semantic' },
-    { id: 'graphdb', label: 'GraphDB', category: 'semantic' },
+    { id: 'knowledgegraph', label: 'Knowledge Graph', category: 'semantic' as SkillCategory },
+    { id: 'semanticweb', label: 'Semantic Web', category: 'semantic' as SkillCategory },
+    { id: 'ontology', label: 'Ontology Engineering', category: 'semantic' as SkillCategory },
+    { id: 'rml', label: 'RML', category: 'semantic' as SkillCategory },
+    { id: 'sparql', label: 'SPARQL', category: 'semantic' as SkillCategory },
+    { id: 'graphdb', label: 'GraphDB', category: 'semantic' as SkillCategory },
 
     // AI & Machine Learning
-    { id: 'llm', label: 'LLM', category: 'ai' },
+    { id: 'llm', label: 'LLM', category: 'ai' as SkillCategory },
   ];
 
   const categories = [
-    { id: 'frontend', title: 'Frontend', icon: WebIcon, color: '#4caf50' },
-    { id: 'backend', title: 'Backend', icon: CodeIcon, color: '#2196f3' },
-    { id: 'languages', title: 'Programming Languages', icon: CodeIcon, color: '#ff9800' },
-    { id: 'semantic', title: 'Semantic Web & KG', icon: AccountTreeIcon, color: '#00bcd4' }, // NEW CATEGORY
-    { id: 'ai', title: 'AI & ML', icon: PsychologyIcon, color: '#e91e63' },
-    { id: 'cloud', title: 'Cloud & DevOps', icon: CloudIcon, color: '#9c27b0' },
-    { id: 'data', title: 'Data Analytics & GIS', icon: StorageIcon, color: '#f44336' }, // Renamed for clarity
+    { id: 'frontend' as SkillCategory, title: 'Frontend', icon: WebIcon, color: '#4caf50' },
+    { id: 'backend' as SkillCategory, title: 'Backend', icon: CodeIcon, color: '#2196f3' },
+    { id: 'languages' as SkillCategory, title: 'Programming Languages', icon: CodeIcon, color: '#ff9800' },
+    { id: 'semantic' as SkillCategory, title: 'Semantic Web & KG', icon: AccountTreeIcon, color: '#00bcd4' }, // NEW CATEGORY
+    { id: 'ai' as SkillCategory, title: 'AI & ML', icon: PsychologyIcon, color: '#e91e63' },
+    { id: 'cloud' as SkillCategory, title: 'Cloud & DevOps', icon: CloudIcon, color: '#9c27b0' },
+    { id: 'data' as SkillCategory, title: 'Data Analytics & GIS', icon: StorageIcon, color: '#f44336' }, // Renamed for clarity
   ];
 
-  const handleCategoryHover = React.useCallback((categoryId) => {
+  const handleCategoryHover = React.useCallback((categoryId: SkillCategory) => {
     setHoveredCategory(categoryId);
   }, []);
 
@@ -220,6 +220,12 @@ export default function SkillsSection() {
               const categoryInfo = categories.find(cat => cat.id === skill.category);
               const isHighlighted = hoveredCategory === skill.category;
               const isDimmed = hoveredCategory && hoveredCategory !== skill.category;
+
+              // Ensure categoryInfo exists with a fallback
+              if (!categoryInfo) {
+                console.warn(`Category info not found for skill: ${skill.label}`);
+                return null;
+              }
 
               return (
                 <ListItem key={skill.id}>
