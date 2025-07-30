@@ -1,65 +1,69 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-
-
-
-// function App() {
-//   const [count, setCount] = useState(0)
-
-//   return (
-//     <>
-//       <div>
-//         <a href="https://vite.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <p>
-//           Edit <code>src/App.tsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   )
-// }
-
-// export default App
-
-import { useEffect } from "react";
+import Header from "./components/Header";
+import React from "react";
+import Experience from "./components/Experience";
+import Description from "./components/Description";
+import Education from "./components/Education";
+import Project from "./components/Projects";
+import Skills from "./components/Skills";
+import Certificates from "./components/Certificates";
 
 function App() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Naveen Varma KALIDINDI",
-      "jobTitle": "Computer Science Student",
-      "url": "https://naveenvarmak.github.io/My-Portfolio/",
-      "sameAs": [
-        "https://www.linkedin.com/in/knaveenv",
-        "https://github.com/NaveenVarmaK"
-      ]
-    });
-    document.head.appendChild(script);
-  }, []);
+  // Add smooth scrolling styles
+  React.useEffect(() => {
+    // Add smooth scrolling CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: rgba(80, 80, 129, 0.1);
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: rgba(80, 80, 129, 0.3);
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(80, 80, 129, 0.5);
+      }
+    `;
+    document.head.appendChild(style);
 
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
   return (
     <div>
-      <h1>Welcome to My Portfolioooooooo</h1>
+      <section id="home">
+        <Header />
+        <Description />
+      </section>
+      <section id="experience">
+        <Experience />
+      </section>
+      <section id="projects">
+        <Project />
+      </section>
+      <section id="education">
+        <Education />
+      </section>
+      <section id="skills">
+        <Skills />
+      </section>
+      <section id="certifications">
+        <Certificates />
+      </section>      
     </div>
+    
   );
 }
 
