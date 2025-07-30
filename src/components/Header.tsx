@@ -1,21 +1,14 @@
 import * as React from 'react';
-import { Box, useMediaQuery, useTheme, Typography, Fade, Chip, IconButton, Divider } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
-import CodeIcon from '@mui/icons-material/Code';
-import EngineeringIcon from '@mui/icons-material/Engineering';
+import { Box, Typography, Fade, IconButton } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 
 export default function SophisticatedHeader() {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  
   const [isVisible, setIsVisible] = React.useState(false);
   const [showContent, setShowContent] = React.useState(false);
   const [cardHeight, setCardHeight] = React.useState(0);
-  const cardRef = React.useRef(null);
+  const cardRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     setIsVisible(true);
@@ -285,7 +278,7 @@ export default function SophisticatedHeader() {
               alignItems: 'center',
             }}
           >
-            {socialLinks.map((social, index) => {
+            {socialLinks.map((social) => {
               const IconComponent = social.icon;
               return (
                 <IconButton

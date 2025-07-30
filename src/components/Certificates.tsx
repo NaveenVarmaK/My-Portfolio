@@ -2,26 +2,21 @@ import * as React from 'react';
 import { Box, useMediaQuery, useTheme, Chip, Divider, Fade, Button } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import CloudIcon from '@mui/icons-material/Cloud';
 import CodeIcon from '@mui/icons-material/Code';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import VerifiedIcon from '@mui/icons-material/Verified';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import BusinessIcon from '@mui/icons-material/Business';
 
 export default function CertificationsSection() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 
-  const [hoveredCard, setHoveredCard] = React.useState(null);
+  const [hoveredCard, setHoveredCard] = React.useState<string | null>(null);
   
   const [isVisible, setIsVisible] = React.useState(false);
   const [cardHeight, setCardHeight] = React.useState(0);
-  const cardRef = React.useRef(null);
+  const cardRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     setIsVisible(true);
@@ -85,7 +80,7 @@ export default function CertificationsSection() {
   ];
 
   // Hover handlers - only for non-mobile devices
-  const handleCardHover = (cardId) => {
+  const handleCardHover = (cardId: string) => {
     if (!isMobile) {
       setHoveredCard(cardId);
     }
@@ -98,14 +93,14 @@ export default function CertificationsSection() {
   };
 
   // Calculate card transform based on hover state - simplified for mobile
-  const getCardTransform = (cardId) => {
+  const getCardTransform = (cardId: string) => {
     if (isMobile) return 'scale(1)'; // No scaling on mobile
     if (hoveredCard === null) return 'scale(1)';
     if (hoveredCard === cardId) return 'scale(1.03)'; // Reduced scale for better mobile performance
     return 'scale(0.97)';
   };
 
-  const getCardOpacity = (cardId) => {
+  const getCardOpacity = (cardId: string) => {
     if (isMobile) return 1; // No opacity changes on mobile
     if (hoveredCard === null) return 1;
     if (hoveredCard === cardId) return 1;
